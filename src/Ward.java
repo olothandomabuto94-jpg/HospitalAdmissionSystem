@@ -51,8 +51,7 @@ public class Ward {
             found.setMedicalCondition(medicalCondition);
             found.setPatientCategory(category);
 
-        }
-        else {
+        } else {
             System.out.println("Error: No patient found with this ID.");
         }
     }
@@ -60,6 +59,71 @@ public class Ward {
     public void displayAllPatients() {
         for (Patient p : patients) {
             p.displayDetails();
+        }
+    }
+
+    public boolean allocateBed(Inpatient patient, int row, int col) {
+        if (row < 0 || row > 3 || col < 0 || col > 4) {
+            System.out.println("Error: Invalid bed position.");
+            return false;
+        }
+        if (bedGrid[row][col] != null) {
+            System.out.println("Error: This bed is occupied.");
+            return false;
+        }
+        bedGrid[row][col] = patient;
+        return true;
+    }
+
+    public boolean releaseBed(int row, int col) {
+        if (row < 0 || row > 3 || col < 0 || col > 4) {
+            System.out.println("Error: Invalid bed position.");
+            return false;
+        }
+        if (bedGrid[row][col] == null) {
+            System.out.println("This bed is not occupied.");
+            return false;
+        }
+        bedGrid[row][col] = null;
+        return true;
+    }
+
+    public void displayWardLayout() {
+        for (int row = 0; row < 4; row++) {
+            for (int col = 0; col < 5; col++) {
+                int bedNumber = (row * 5) + col + 1;
+                String label = "B" +  bedNumber;
+                if (bedGrid[row][col] == null) {
+                    System.out.println(label + ": is Empty.");
+                }
+                else {
+                    System.out.println(label + ": is currently occupied by "  + bedGrid[row][col].getFirstName() + " " + bedGrid[row][col].getPatientID());
+                }
+            }
+        }
+    }
+
+    public void displayAvailableBeds() {
+        for (int row = 0; row < 4; row++) {
+            for (int col = 0; col < 5; col++) {
+                int bedNumber = (row * 5) + col + 1;
+                String label = "B" + bedNumber;
+                if (bedGrid[row][col] == null) {
+                    System.out.println(label + ": is Empty and available.");
+                }
+            }
+        }
+    }
+
+    public void displayOccupiedBeds() {
+        for (int row = 0; row < 4; row++) {
+            for (int col = 0; col < 5; col++) {
+                int bedNumber = (row * 5) + col + 1;
+                String label = "B" + bedNumber;
+                if (bedGrid[row][col] != null) {
+                    System.out.println(label + ": is currently occupied by "  + bedGrid[row][col].getFirstName() + " " + bedGrid[row][col].getPatientID());
+                }
+            }
         }
     }
 
