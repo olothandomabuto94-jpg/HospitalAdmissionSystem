@@ -1,13 +1,18 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-void main() {
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    IO.println(String.format("Hello and welcome!"));
+import java.util.Scanner;
 
-    for (int i = 1; i <= 5; i++) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        IO.println("i = " + i);
+public class Main {
+    public static void main(String[] args) {
+        Ward ward = new Ward();
+        Scanner scanner = new Scanner(System.in);
+
+        boolean running = true;
+        while (running) {
+            System.out.println("\n--- Hospital Ward Menu ---");
+            System.out.println("1. Register new patient");
+            System.out.println("2. Search for a patient");
+            System.out.println("0. Exit");
+            System.out.println("Please choose an option: ");
+        }
+
     }
 }

@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Ward {
     private ArrayList<Patient> patients = new ArrayList<>();
@@ -125,6 +127,45 @@ public class Ward {
                 }
             }
         }
+    }
+
+    public void displayTotalPatients() {
+        System.out.println("There are currently: " + patients.size() + " patients.");
+    }
+
+    public void displayOccupiedBedCount() {
+        int count = 0;
+        for (int row = 0; row < 4; row++) {
+            for (int col = 0; col < 5; col++) {
+                if (bedGrid[row][col] != null) {
+                    count++;
+                }
+            }
+        }
+        System.out.println("Occupied Beds: " + count);
+    }
+
+    public void displayOccupancyPercentage() {
+        int occupied = 0;
+        for (int row = 0; row < 4; row++) {
+            for (int col = 0; col < 5; col++) {
+                if (bedGrid[row][col] != null) {
+                    occupied++;
+                }
+            }
+        }
+        double percentage = (occupied * 100.0) / 20;
+        System.out.println("Ward Occupancy is at: " + percentage + "%");
+    }
+
+    public void sortBySurname() {
+        Comparator<Patient> bySurname = (p1, p2) -> p1.getLastName().compareTo(p2.getLastName());
+        Collections.sort(patients, bySurname);
+    }
+
+    public void sortByPatientID() {
+        Comparator<Patient> byPatientID = (p1, p2) -> p1.getPatientID().compareTo(p2.getPatientID());
+        Collections.sort(patients, byPatientID);
     }
 
 }
