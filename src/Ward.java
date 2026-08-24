@@ -168,4 +168,8 @@ public class Ward {
         Collections.sort(patients, byPatientID);
     }
 
+    public ArrayList<Patient> getPatients() {
+        return patients;
+    }
+
 }
